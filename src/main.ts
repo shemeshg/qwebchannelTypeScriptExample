@@ -1,7 +1,7 @@
 import { sayHello } from './greet';
 import {QWebChannel} from 'qwebchannel'
 import {WcMidiOut} from './WcMidiOut'
-
+import {WcMidiIn} from './WcMidiIn'
 
 function showHello(divName: string, name: string) {
     const elt = document.getElementById(divName);
@@ -21,6 +21,7 @@ class Channel{
     private channel:QWebChannel;
     
     wcmidiout:WcMidiOut;
+    wcmidiin:WcMidiIn;
     
     constructor (ipAddress:string = "localhost", port:number = 12345){
         this.wsUri  = `ws://${ipAddress}:${port}`;
@@ -46,6 +47,8 @@ class Channel{
         this.channel  = new QWebChannel(this.socket, (channel:any) => { 
             this.wcmidiout = new WcMidiOut(this.channel.objects.wcmidiout);
             this.wcmidiout.open();
+            this.wcmidiin = new WcMidiIn(this.channel.objects.wcmidiin);
+            this.wcmidiin.open();            
         })
     }
 
@@ -63,3 +66,5 @@ class Channel{
 var _window:any;
 _window = window;
 _window.g = new Channel();
+//g.open()
+//g.wcmidiin.port(2).then((p)=>{window.p = p})
