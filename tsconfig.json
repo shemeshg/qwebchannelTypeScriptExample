@@ -1,0 +1,12 @@
+{
+    
+    "files": [
+        "src/main.ts",
+        "types-qwebchannel/index.d.ts"
+    ],
+    "compilerOptions": {
+        "allowJs": true,
+        "noImplicitAny": true,
+        "target": "es2015"
+    }
+}
