@@ -101,6 +101,13 @@ export class WcMidiIn{
         })     
     }
 
+    ignoreTypes(midiSysex = true, midiTime = true,  midiSense = true){
+        return new Promise((resolve)=>{
+            this.wcmidiinWs.ignoreTypes(midiSysex, midiTime, midiSense, (arg:any)=>{
+                resolve(arg);
+            })
+        })  
+    }
 
     openVirtualPort( portName:string){
         return new Promise((resolve)=>{
