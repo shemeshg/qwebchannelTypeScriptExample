@@ -66,5 +66,19 @@ class Channel{
 var _window:any;
 _window = window;
 _window.g = new Channel();
-//g.open()
-//g.wcmidiin.port(2).then((p)=>{window.p = p})
+
+
+/*
+g.open()
+g.wcmidiin.port(2).then((p)=>{window.p = p})
+p.routingMidiChainsAaddChain().then( (c) => {window.c  = c})
+c.routingActionAddSendPortByName("IAC Driver Bus 1")
+
+let g = new Channel();
+g.open()
+g.wcmidiin.port(2).then((p)=>{
+    return p.routingMidiChainsAaddChain();
+}).then(p=>{
+    p.routingActionAddSendPortByName("IAC Driver Bus 1")
+})
+*/
