@@ -76,6 +76,7 @@ p.ignoreTypes(false,false,false)
 p.clearRoutingMidiChains()
 p.routingMidiChainsAaddChain().then( (c) => {window.c  = c})
 c.routingActionAddDeferedEvent(1,1)
+c.routingActionAddLogData(1)
 
 g.open()
 g.wcmidiin.port(2).then((p)=>{window.p = p})
