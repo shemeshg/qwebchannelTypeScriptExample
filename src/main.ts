@@ -71,6 +71,7 @@ _window.g = new Channel();
 /*
 g.open()
 g.wcmidiin.port(2).then((p)=>{window.p = p})
+p.routingMidiChainsReset()
 p.routingMidiChainsAaddChain().then( (c) => {window.c  = c})
 c.routingActionAddSendPortByName("IAC Driver Bus 1")
 
