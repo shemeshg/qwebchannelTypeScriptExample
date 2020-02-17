@@ -69,11 +69,20 @@ _window.g = new Channel();
 
 
 /*
+
+g.open()
+g.wcmidiin.port(1).then((p)=>{window.p = p})
+p.ignoreTypes(false,false,false)
+p.clearRoutingMidiChains()
+p.routingMidiChainsAaddChain().then( (c) => {window.c  = c})
+c.routingActionAddDeferedEvent(1,1)
+
 g.open()
 g.wcmidiin.port(2).then((p)=>{window.p = p})
 p.routingMidiChainsReset()
 p.routingMidiChainsAaddChain().then( (c) => {window.c  = c})
 c.routingActionAddSendPortByName("IAC Driver Bus 1")
+
 
 let g = new Channel();
 g.open()

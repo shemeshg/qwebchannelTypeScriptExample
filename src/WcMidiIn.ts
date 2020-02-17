@@ -4,6 +4,13 @@ export enum LOG_TO {
     SERVER
 }
 
+export enum DEFFERED_EVENT_TYPE{
+    IN_SPP,
+    IN_BAR,
+    AT_SPP,
+    AT_BAR
+}
+
 export enum MIDI_FILTER_ACTION_IF_NOT {
     DO_NOT_DELETE,
     DELETE_IF_NOT,
@@ -61,6 +68,14 @@ class RoutingMidiChain {
         })
     }
 
+    routingActionAddDeferedEvent(defferedEventType: DEFFERED_EVENT_TYPE, defferedTo:number) {
+        return new Promise((resolve) => {
+            this.wcmidiinWs.routingActionAddDeferedEvent(this.portNumber, this.chainId, defferedEventType, defferedTo , (arg: any) => {
+                resolve(arg);
+            })
+        })
+    }    
+
     routingActionAddFilterMidiChannelMsg(channels: RangeMap, eventTypes: RangeMap, data1: RangeMap, data2: RangeMap,
         midiFilterActionIfNot: MIDI_FILTER_ACTION_IF_NOT) {
         return new Promise((resolve) => {
@@ -109,13 +124,7 @@ class _MidiInPort {
         })
     }
 
-    clearCc14Bit(channel:number, cc:number) {
-        return new Promise((resolve) => {
-            this.wcmidiinWs.clearCc14Bit(this.portNumber, (arg: any) => {
-                resolve(arg);
-            })
-        })
-    }
+
 
 
     addPropegateClockPort(portNumberToPropegate:number) {
@@ -126,6 +135,7 @@ class _MidiInPort {
         })
     }
 
+    /* // Use clearRoutingMidiChains
     clearPropegateClockPort(channel:number, cc:number) {
         return new Promise((resolve) => {
             this.wcmidiinWs.clearPropegateClockPort(this.portNumber, (arg: any) => {
@@ -134,16 +144,23 @@ class _MidiInPort {
         })
     }
 
-
+    clearCc14Bit(channel:number, cc:number) {
+        return new Promise((resolve) => {
+            this.wcmidiinWs.clearCc14Bit(this.portNumber, (arg: any) => {
+                resolve(arg);
+            })
+    })
+    }
+    */
     clearRoutingMidiChains() {
         return new Promise((resolve) => {
-            this.wcmidiinWs.routingMidiChainsReset(this.portNumber, (arg: any) => {
+            this.wcmidiinWs.clearRoutingMidiChains(this.portNumber, (arg: any) => {
                 this.routingMidiChains.length = 0;
                 resolve(arg);
             })
         })
     }
-
+    
     setTimeSig(timeSig=4, timeSigDivBy=4, fromSppPos = 0) {
         return new Promise((resolve) => {
             this.wcmidiinWs.setTimeSig(this.portNumber, timeSig, timeSigDivBy, fromSppPos,  (arg: any) => {
