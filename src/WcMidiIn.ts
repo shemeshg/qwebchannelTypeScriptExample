@@ -101,10 +101,52 @@ class _MidiInPort {
         })
     }
 
-    routingMidiChainsReset() {
+    addCc14Bit(channel:number, cc:number) {
+        return new Promise((resolve) => {
+            this.wcmidiinWs.addCc14Bit(this.portNumber, channel, cc, (arg: any) => {
+                resolve(arg);
+            })
+        })
+    }
+
+    clearCc14Bit(channel:number, cc:number) {
+        return new Promise((resolve) => {
+            this.wcmidiinWs.clearCc14Bit(this.portNumber, (arg: any) => {
+                resolve(arg);
+            })
+        })
+    }
+
+
+    addPropegateClockPort(portNumberToPropegate:number) {
+        return new Promise((resolve) => {
+            this.wcmidiinWs.addCc14Bit(this.portNumber, portNumberToPropegate,  (arg: any) => {
+                resolve(arg);
+            })
+        })
+    }
+
+    clearPropegateClockPort(channel:number, cc:number) {
+        return new Promise((resolve) => {
+            this.wcmidiinWs.clearPropegateClockPort(this.portNumber, (arg: any) => {
+                resolve(arg);
+            })
+        })
+    }
+
+
+    clearRoutingMidiChains() {
         return new Promise((resolve) => {
             this.wcmidiinWs.routingMidiChainsReset(this.portNumber, (arg: any) => {
                 this.routingMidiChains.length = 0;
+                resolve(arg);
+            })
+        })
+    }
+
+    setTimeSig(timeSig=4, timeSigDivBy=4, fromSppPos = 0) {
+        return new Promise((resolve) => {
+            this.wcmidiinWs.setTimeSig(this.portNumber, timeSig, timeSigDivBy, fromSppPos,  (arg: any) => {
                 resolve(arg);
             })
         })
