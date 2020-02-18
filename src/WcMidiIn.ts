@@ -8,7 +8,9 @@ export enum DEFFERED_EVENT_TYPE{
     IN_SPP,
     IN_BAR,
     AT_SPP,
-    AT_BAR
+    AT_BAR,
+    QUANTIZE_SPP,
+    QUANTIZE_BAR
 }
 
 export enum MIDI_FILTER_ACTION_IF_NOT {

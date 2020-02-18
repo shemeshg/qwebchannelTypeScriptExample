@@ -41,7 +41,9 @@ class Channel{
         }         
     }
 
- 
+    close(){
+        this.socket.close();
+    }
 
     private _onopen(){
         this.channel  = new QWebChannel(this.socket, (channel:any) => { 
