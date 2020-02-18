@@ -84,7 +84,8 @@ g.open()
 g.wcmidiin.port(2).then((p)=>{window.p = p})
 p.routingMidiChainsReset()
 p.routingMidiChainsAaddChain().then( (c) => {window.c  = c})
-c.routingActionAddSendPortByName("IAC Driver Bus 1")
+c.outingActionAddSendRemoteServer("127.0.0.1", 12345, 1) 
+//c.routingActionAddSendPortByName("IAC Driver Bus 1")
 
 
 let g = new Channel();

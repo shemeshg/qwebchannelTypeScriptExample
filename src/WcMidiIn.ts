@@ -62,6 +62,14 @@ class RoutingMidiChain {
         })
     }
 
+    routingActionAddSendRemoteServer(serverName:string, serverPort:number, remoteMidiPortNumber:number) {
+        return new Promise((resolve) => {
+            this.wcmidiinWs.routingActionAddSendRemoteServer(this.portNumber, this.chainId, serverName, serverPort, remoteMidiPortNumber, (arg: any) => {
+                resolve(arg);
+            })
+        })
+    }
+
     routingActionAddLogData(logto: LOG_TO) {
         return new Promise((resolve) => {
             this.wcmidiinWs.routingActionAddLogData(this.portNumber, this.chainId, logto, (arg: any) => {
